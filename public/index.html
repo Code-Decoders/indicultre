@@ -10,6 +10,7 @@
       content="Web site created using create-react-app"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -29,6 +30,38 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script type="text/javascript">
+      var prev = 0;
+      var $window = $(window);
+      var nav = $(".ic-header, .mobile_header");
+  
+      $window.on("scroll", function (e) {
+        var scrollTop = $window.scrollTop();
+        if (scrollTop <= 0) {
+          nav.removeClass("webmenu_hidden");
+  
+          prev = 0;
+        } else {
+          nav.toggleClass("webmenu_hidden", scrollTop > prev);
+  
+          prev = scrollTop;
+        }
+      });
+  
+      $(window).scroll(function () {
+        var scroll = $(window).scrollTop();
+        if (scroll > 100) {
+          $(".ic-header, .mobile_header").addClass(
+            "header_change"
+          );
+        } else {
+          $(".ic-header, .mobile_header").removeClass(
+            "header_change"
+          );
+        }
+      });
+    </script>
+  
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
