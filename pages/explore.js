@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { Unity, useUnityContext, } from 'react-unity-webgl';
-// import { getActiveAccount, getAuctionContractStorage } from './adaptors/tezos';
-// import BigNumber from 'bignumber.js'
+import { bid, collect, getById, getOwnerOf } from '../lib/web3Adaptor';
+import Web3State from '../lib/Web3State';
 
 const Playground = () => {
     const {
@@ -12,6 +12,7 @@ const Playground = () => {
         loadingProgression,
         addEventListener,
         initialisationError,
+        requestFullscreen,
         removeEventListener,
         sendMessage,
     } = useUnityContext({
@@ -21,7 +22,47 @@ const Playground = () => {
         codeUrl: "build/Build.wasm",
     });
 
-    const [called ,setCalled] = useState(null)
+
+    const { accounts, web3, contract } = useContext(Web3State);
+
+    const [id, setId] = useState(0)
+
+    const get = async () => {
+        const data = await getById(id);
+        if (data) {
+            const owner = await getOwnerOf(id);
+            var parseData = {
+                'id': id,
+                'title': token_metadata.find(e => parseInt(data.tokenId) == id).title,
+                'description': token_metadata.find(e => parseInt(data.tokenId) == id).description,
+                'end_timestamp': data.endTimestamp + "000",
+                'highest_bidder': data.bidder.toLowerCase(),
+                'min_bid': (data.bidAmount / 10 ** 18).toFixed(2),
+                'owner': owner.toLowerCase(),
+            };
+            sendMessage("FirstPersonController", "SetNft", JSON.stringify(parseData));
+        }
+    }
+    useEffect(() => {
+        if (id == 0) return;
+        let interval = setInterval(async () => {
+            get()
+        }, 3000)
+        return () => clearInterval(interval);
+    }, [id])
+
+    useEffect(() => {
+        
+        if (accounts.length > 0) {
+            sendMessage("FirstPersonController", "SetUser", accounts[0].toLowerCase());
+            console.log("account set")
+        }
+    }, [accounts])
+
+    useEffect(() => {
+        if (isLoaded)
+        requestFullscreen()
+    }, [isLoaded])
 
 
 
@@ -78,104 +119,23 @@ const Playground = () => {
         },
     ]
 
-
-
-
-
-    const init = async () => {
-        // var val = await getAuctionContractStorage()
-        // let data = []
-        // for (let index = 1; index <= 10; index++) {
-
-        //     var token_data = await val.get(index)
-        //     if (token_data) {
-        //         var id = BigNumber(token_data.token_id).toNumber()
-        //         var amt = BigNumber(token_data.bid_amount).toNumber()
-        //         var parseData = {
-        //             'id': id,
-        //             'title': token_metadata.find(e => e.id == id).title,
-        //             'description': token_metadata.find(e => e.id == id).description,
-        //             'end_timestamp': new Date(token_data.end_timestamp).getTime().toString(),
-        //             'highest_bidder': token_data.bidder,
-        //             'min_bid': amt.toString(),
-        //             'owner': token_data.bidder,
-        //         };
-        //         console.log(parseData)
-        //         data.push(parseData)
-        //         console.log(data)
-        //     }
-        //     else {
-        //     }
-        // }
-        // sendMessage("FirstPersonController", "SetData", JSON.stringify({ nfts: data }));
-    };
-
-
-
-
-
     const handleGetData = async (val) => {
-        // var map = await getAuctionContractStorage()
-        // console.log(map)
-        // var token_data = await map.get(val + 1)
-        // console.log(token_data)
-        // if (token_data) {
-        //     var id = BigNumber(token_data.token_id).toNumber()
-        //     var amt = BigNumber(token_data.bid_amount).toNumber()
-        //     var parseData = {
-        //         'id': id,
-        //         'title': token_metadata.find(e => e.id == id).title,
-        //         'description': token_metadata.find(e => e.id == id).description,
-        //         'end_timestamp': new Date(token_data.end_timestamp).getTime().toString(),
-        //         'highest_bidder': token_data.bidder,
-        //         'min_bid': amt.toString(),
-        //         'owner': token_data.bidder,
-        //     };
-        //     console.log(parseData)
-        // }
-        // if (called && called != val) {
-        //     setTimeout(() => {
-        //         console.log(val)
-        //     }, 2000)
-        //     setCalled(val)
-        }
-        // interval = setInterval(async () => {
-        // var map = await getAuctionContractStorage()
-        // var token_data = await map.get(val)
-        // if (token_data) {
-        //     var id = BigNumber(token_data.token_id).toNumber()
-        //     var amt = BigNumber(token_data.bid_amount).toNumber()
-        //     var parseData = {
-        //         'id': id,
-        //         'title': token_metadata.find(e => e.id == id).title,
-        //         'description': token_metadata.find(e => e.id == id).description,
-        //         'end_timestamp': new Date(token_data.end_timestamp).getTime().toString(),
-        //         'highest_bidder': token_data.bidder,
-        //         'min_bid': amt.toString(),
-        //         'owner': token_data.bidder,
-        //     };
-        //     console.log(parseData)
-        // }
-        // }, 5000);
+        console.log("handleGetData", val)
+        setId(() => val)
     }
 
     const handleGetUser = () => {
-        // getActiveAccount().then(wallet => {
-        //     if (wallet)
-        //         sendMessage("FirstPersonController", "SetUser", wallet.address);
-        // })
+        sendMessage("FirstPersonController", "SetUser", accounts[0].toLowerCase());
     }
     const handleWithdraw = (val) => {
-        console.log(val)
+        collect(val, accounts[0])
     }
     const handleBid = (val) => {
-        console.log(val)
+        bid(val.id, val.amount, accounts[0])
     }
 
     const handleRemove = () => {
-        // if (interval) {
-        //     clearInterval(interval);
-        // }
+
     }
 
 

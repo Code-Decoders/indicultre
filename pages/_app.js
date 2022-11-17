@@ -9,9 +9,8 @@ import 'react-toastify/dist/ReactToastify.css';
 function MyApp({ Component, pageProps }) {
   const [state, setState] = React.useState({
     web3: null,
-    accounts: null,
-    inventory: null,
-    token: null,
+    accounts: [],
+    contract: null,
   });
 
   useEffect(() => {

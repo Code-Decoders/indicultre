@@ -1,27 +1,19 @@
 
 import Link from 'next/link';
-import React,{ useState, useEffect } from 'react';
+import React,{ useState, useEffect, useContext } from 'react';
+import { initializeWeb3 } from '../lib/web3Adaptor';
+import Web3State from '../lib/Web3State';
 
 
 
 function App() {
 
   const [isShown, setIsShown] = useState(false);
-  const [wallet, setWallet] = useState(null);
-  const [nfts, setNfts] = useState([])
-
+  const { web3, accounts, contract } = useContext(Web3State);
 
 
   const handleLogin = async () => {
-  //   if (!wallet) {
-  //     console.log("connecting to tezos");
-  //     let wallet = await connectAccount();
-  //     setWallet(wallet);
-  //   } else {
-  //     console.log("clearing active account");
-  //     await clearActiveAccount();
-  //     setWallet(null);
-  //   }
+    initializeWeb3()
   }
 
 
@@ -66,7 +58,7 @@ function App() {
                   className="select-wallet-header-button"
                   onClick={handleLogin}
                 >
-                  <p>{"Select Wallet"}</p>
+                  <p>{accounts?.length > 0 ? accounts[0] :"Select Wallet"}</p>
                 </button>
               </li>
             </ul>
