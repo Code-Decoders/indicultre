@@ -303,9 +303,7 @@ function App() {
                     </div>
                     <div className="feature-content">
                       <p>
-                        The NFT acts as a membership card for access to an elite
-                        community of art enthusiasts, professionals and emerging
-                        artists connected through INDIA Culture's network.
+                        {"The NFT acts as a membership card for access to an elite community of art enthusiasts, professionals and emerging artists connected through INDIA Culture's network."}
                       </p>
                     </div>
                   </div>
@@ -321,10 +319,7 @@ function App() {
                     </div>
                     <div className="feature-content">
                       <p>
-                        To own a INDIA Culture's NFT grants access to online
-                        rendezvous in the main metaverses and offline events in
-                        exclusive locations where holders can meet and connect
-                        with like-minded people.
+                        {"To own a INDIA Culture's NFT grants access to online rendezvous in the main metaverses and offline events in exclusive locations where holders can meet and connect with like-minded people."}
                       </p>
                     </div>
                   </div>
