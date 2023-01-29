@@ -3,8 +3,7 @@ import Link from 'next/link';
 import React,{ useState, useEffect, useContext } from 'react';
 import { initializeWeb3 } from '../lib/web3Adaptor';
 import Web3State from '../lib/Web3State';
-
-
+import Image from 'next/image';
 
 function App() {
 
@@ -110,37 +109,37 @@ function App() {
                   <div className="banner-grid-images">
                     <div>
                       <img
-                        src="https://dummyimage.com/524x524/956614/956614"
+                        src="https://th.bing.com/th/id/OIP.QRZ3ciaM7T4FlcqwXyW3FwHaEK?pid=ImgDet&rs=1"
                         alt=""
                       />
                     </div>
                     <div>
                       <img
-                        src="https://dummyimage.com/524x524/000000/000000"
+                        src="https://th.bing.com/th/id/OIP.gvZFAxKuCXN2-oxPHB47lgHaE_?pid=ImgDet&rs=1"
                         alt=""
                       />
                     </div>
                     <div>
                       <img
-                        src="https://dummyimage.com/524x524/956614/956614"
+                        src="https://th.bing.com/th/id/OIP.lhijq8kW1dSleNu9LgsfsAHaE8?pid=ImgDet&rs=1"
                         alt=""
                       />
                     </div>
                     <div>
                       <img
-                        src="https://dummyimage.com/524x524/956614/956614"
+                        src="https://th.bing.com/th/id/OIP.lhijq8kW1dSleNu9LgsfsAHaE8?pid=ImgDet&rs=1"
                         alt=""
                       />
                     </div>
                     <div>
                       <img
-                        src="https://dummyimage.com/524x524/956614/956614"
+                        src="https://wallpapercave.com/wp/wp5281250.jpg"
                         alt=""
                       />
                     </div>
                     <div>
                       <img
-                        src="https://dummyimage.com/524x524/000000/000000"
+                        src="https://www.outlookindia.com/outlooktraveller/public/uploads/2018/07/Dwarkadhish-Temple.jpg"
                         alt=""
                       />
                     </div>
@@ -162,7 +161,7 @@ function App() {
                   <div>
                     <div className="works-icon">
                       <img
-                        src="https://dummyimage.com/150x150/956614/956614"
+                        src="https://www.indianholiday.com/pictures/tourgallery/586/gujarat-heritage-tour-3169.jpg"
                         alt=""
                       />
                     </div>
@@ -179,7 +178,7 @@ function App() {
                   <div>
                     <div className="works-icon">
                       <img
-                        src="https://dummyimage.com/150x150/956614/956614"
+                        src="https://th.bing.com/th/id/OIP.sWqqCbySVFZfcQm9wR37NAHaDb?pid=ImgDet&rs=1"
                         alt=""
                       />
                     </div>
@@ -196,7 +195,7 @@ function App() {
                   <div>
                     <div className="works-icon">
                       <img
-                        src="https://dummyimage.com/150x150/956614/956614"
+                        src="https://i.pinimg.com/originals/82/8d/4d/828d4d94171019c6505fe97e13e37837.jpg"
                         alt=""
                       />
                     </div>
@@ -212,7 +211,7 @@ function App() {
                   <div>
                     <div className="works-icon">
                       <img
-                        src="https://dummyimage.com/150x150/956614/956614"
+                        src="https://th.bing.com/th/id/OIP.VFw07RqI9gjgsTaoeGnOmwHaFH?pid=ImgDet&rs=1"
                         alt=""
                       />
                     </div>
@@ -228,7 +227,7 @@ function App() {
                   <div>
                     <div className="works-icon">
                       <img
-                        src="https://dummyimage.com/150x150/956614/956614"
+                        src="https://th.bing.com/th/id/OIP.l6Q1muET-cxUYjroPMQj2gHaE5?pid=ImgDet&w=926&h=613&rs=1"
                         alt=""
                       />
                     </div>
@@ -257,7 +256,7 @@ function App() {
                   <div className="feature-card">
                     <div className="feature-icon">
                       <img
-                        src="https://dummyimage.com/150x150/956614/956614"
+                        src="https://static.india.com/wp-content/uploads/2020/09/KERALA1200.jpg"
                         alt=""
                       />
                     </div>
@@ -276,7 +275,7 @@ function App() {
                   <div className="feature-card">
                     <div className="feature-icon">
                       <img
-                        src="https://dummyimage.com/150x150/956614/956614"
+                        src="https://thatstunningguy.com/wp-content/uploads/2020/03/Dwarka.jpg"
                         alt=""
                       />
                     </div>
@@ -294,7 +293,7 @@ function App() {
                   <div className="feature-card">
                     <div className="feature-icon">
                       <img
-                        src="https://dummyimage.com/150x150/956614/956614"
+                        src="https://i1.wp.com/thetravelertwins.com/wp-content/uploads/2019/10/The-famous-temples-of-Gujarat.jpg?fit=819%2C1024&ssl=1" height={10} width={50}
                         alt=""
                       />
                     </div>
@@ -310,7 +309,7 @@ function App() {
                   <div className="feature-card">
                     <div className="feature-icon">
                       <img
-                        src="https://dummyimage.com/150x150/956614/956614"
+                        src="https://images4.alphacoders.com/562/thumb-1920-562137.jpg"
                         alt=""
                       />
                     </div>
