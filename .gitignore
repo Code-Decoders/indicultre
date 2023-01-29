@@ -39,3 +39,7 @@ package-lock.json
 
 # Local Netlify folder
 .netlify
+public/build/Build.data
+public/build/Build.framework.js
+public/build/Build.loader.js
+public/build/Build.wasm

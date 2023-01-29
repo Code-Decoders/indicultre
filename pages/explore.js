@@ -40,7 +40,7 @@ const Playground = () => {
                 'min_bid': (data.bidAmount / 10 ** 18).toFixed(2),
                 'owner': owner.toLowerCase(),
             };
-            sendMessage("FirstPersonController", "SetNft", JSON.stringify(parseData));
+            sendMessage("PlayerArmature", "SetNft", JSON.stringify(parseData));
         }
     }
     useEffect(() => {
@@ -52,16 +52,16 @@ const Playground = () => {
     }, [id])
 
     useEffect(() => {
-        
+
         if (accounts.length > 0) {
-            sendMessage("FirstPersonController", "SetUser", accounts[0].toLowerCase());
+            sendMessage("PlayerArmature", "SetUser", accounts[0].toLowerCase());
             console.log("account set")
         }
     }, [accounts])
 
     useEffect(() => {
         if (isLoaded)
-        requestFullscreen()
+            requestFullscreen()
     }, [isLoaded])
 
 
@@ -125,7 +125,7 @@ const Playground = () => {
     }
 
     const handleGetUser = () => {
-        sendMessage("FirstPersonController", "SetUser", accounts[0].toLowerCase());
+        sendMessage("PlayerArmature", "SetUser", accounts[0].toLowerCase());
     }
     const handleWithdraw = (val) => {
         collect(val, accounts[0])
@@ -150,6 +150,7 @@ const Playground = () => {
             addEventListener("OnBid", handleBid);
         }
         return () => {
+
             console.log('unmounting');
             removeEventListener("OnNFTCall", handleGetData);
             removeEventListener("OnRemove", handleRemove);
@@ -157,7 +158,6 @@ const Playground = () => {
             removeEventListener("OnWithdraw", handleWithdraw)
             removeEventListener("OnBid", handleBid)
             unload();
-
         };
     }, [isLoaded]);
 
